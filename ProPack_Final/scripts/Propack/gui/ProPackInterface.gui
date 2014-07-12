@@ -1,0 +1,976 @@
+//--- OBJECT WRITE BEGIN --- ProPack In-game Interface
+new GuiControl(ProPackGui) {
+	profile = "GuiDefaultProfile";
+	horizSizing = "width";
+	vertSizing = "height";
+	position = "0 0";
+	extent = "640 480";
+	minExtent = "8 8";
+	visible = "1";
+
+	new ShellPaneCtrl(ProPackParent) {
+		profile = "ShellPaneProfile";
+		horizSizing = "center";
+		vertSizing = "center";
+		position = "0 0";
+		extent = "640 480";
+		minExtent = "48 92";
+		visible = "1";
+		text = "ProPack::InterFace";
+		longTextBuffer = "0";
+		noTitleBar = "0";
+
+		new ShellTabButton(ProPackHudOptionsBtn) {
+			profile = "ShellTabProfile";
+			horizSizing = "right";
+			vertSizing = "bottom";
+			position = "15 40";
+			extent = "189 38";
+			minExtent = "48 38";
+			visible = "1";
+			command = "ProPackGui.setFrameList(ProPackHudOptions);";
+			text = "Hud Transparent Options";
+			longTextBuffer = "0";
+			maxLength = "255";
+		};
+		new ShellTabButton(ProPackAutoChatBtn) {
+			profile = "ShellTabProfile";
+			horizSizing = "right";
+			vertSizing = "bottom";
+			position = "15 80";
+			extent = "189 38";
+			minExtent = "48 38";
+			visible = "1";
+			command = "ProPackGui.setFrameList(ProPackAutoChat);";
+			text = "AutoChat Options";
+			longTextBuffer = "0";
+			maxLength = "255";
+		};
+		new ShellTabButton(ProPackTrackerBtn) {
+			profile = "ShellTabProfile";
+			horizSizing = "right";
+			vertSizing = "bottom";
+			position = "15 120";
+			extent = "189 38";
+			minExtent = "48 38";
+			visible = "1";
+			command = "ProPackGui.setFrameList(ProPackTracker);";
+			text = "Kill Tracking Options";
+			longTextBuffer = "0";
+			maxLength = "255";
+		};
+		new ShellTabButton(ProPackInfoHudBtn) {
+			profile = "ShellTabProfile";
+			horizSizing = "right";
+			vertSizing = "bottom";
+			position = "15 160";
+			extent = "189 38";
+			minExtent = "48 38";
+			visible = "1";
+			command = "ProPackGui.setFrameList(ProPackInfoHud);";
+			text = "InfoHud Options (Split Chat)";
+			longTextBuffer = "0";
+			maxLength = "255";
+		};
+		new ShellTabButton(ProPackOBHudBtn) {
+			profile = "ShellTabProfile";
+			horizSizing = "right";
+			vertSizing = "bottom";
+			position = "15 200";
+			extent = "189 38";
+			minExtent = "48 38";
+			visible = "1";
+			command = "ProPackGui.setFrameList(ProPackOBHud);";
+			text = "NEW ObjectiveHud Options";
+			longTextBuffer = "0";
+			maxLength = "255";
+		};
+		new ShellTabButton(ProPackMultiBtn) {
+			profile = "ShellTabProfile";
+			horizSizing = "right";
+			vertSizing = "bottom";
+			position = "15 240";
+			extent = "189 38";
+			minExtent = "48 38";
+			visible = "1";
+			command = "ProPackGui.setFrameList(ProPackMulti);";
+			text = "Multi Hud FPS/Ping/Alt/Speed";
+			longTextBuffer = "0";
+			maxLength = "255";
+		};
+		new ShellTabButton(ProPackMuteBtn) {
+			profile = "ShellTabProfile";
+			horizSizing = "right";
+			vertSizing = "bottom";
+			position = "15 280";
+			extent = "189 38";
+			minExtent = "48 38";
+			visible = "1";
+			command = "ProPackGui.setFrameList(ProPackMute);";
+			text = "Mute/Alter Tools";
+			longTextBuffer = "0";
+			maxLength = "255";
+		};
+		new ShellTabFrame(ProPackHudOptionsFrame) {
+			profile = "ShellTabFrameProfile";
+			horizSizing = "right";
+			vertSizing = "bottom";
+			position = "199 33";
+			extent = "419 424";
+			minExtent = "254 26";
+			visible = "1";
+			isVertical = "1";
+			useCloseButton = "0";
+			edgeInset = "0";
+
+			new GuiMLTextCtrl(ProPackHudOptionsNotes) {
+				profile = "GuiDefaultProfile";
+				horizSizing = "width";
+				vertSizing = "bottom";
+				position = "11 11";
+				extent = "397 100";
+				minExtent = "8 8";
+				visible = "1";
+				lineSpacing = "2";
+				allowColorChars = "1";
+				maxChars = "-1";
+			};
+			new ShellToggleButton(ProPackOuterChatHud) {
+				profile = "ShellRadioProfile";
+				horizSizing = "right";
+				vertSizing = "bottom";
+				position = "11 125";
+				extent = "190 27";
+				minExtent = "26 27";
+				visible = "1";
+				variable = "$ProPackPrefs::outerChatHudVar";
+				text = "ChatHud Background";
+				longTextBuffer = "0";
+				maxLength = "255";
+			};
+			new ShellToggleButton(ProPackChatMenuHud) {
+				profile = "ShellRadioProfile";
+				horizSizing = "right";
+				vertSizing = "bottom";
+				position = "11 155";
+				extent = "190 30";
+				minExtent = "26 27";
+				visible = "1";
+				variable = "$ProPackPrefs::ChatMenuHudVar";
+				text = "ChatMenu Background";
+				longTextBuffer = "0";
+				maxLength = "255";
+			};
+			new ShellToggleButton(ProPackmainVoteHud) {
+				profile = "ShellRadioProfile";
+				horizSizing = "right";
+				vertSizing = "bottom";
+				position = "11 185";
+				extent = "190 30";
+				minExtent = "26 27";
+				visible = "1";
+				variable = "$ProPackPrefs::mainVoteHudVar";
+				text = "Vote Status Hud";
+				longTextBuffer = "0";
+				maxLength = "255";
+			};
+			new ShellToggleButton(ProPackHudClusterBack) {
+				profile = "ShellRadioProfile";
+				horizSizing = "right";
+				vertSizing = "bottom";
+				position = "11 215";
+				extent = "190 30";
+				minExtent = "26 27";
+				visible = "1";
+				variable = "$ProPackPrefs::HudClusterBack";
+				text = "Health/Energy/Compass";
+				longTextBuffer = "0";
+				maxLength = "255";
+			};
+			new ShellToggleButton(ProPackretFrameHud) {
+				profile = "ShellRadioProfile";
+				horizSizing = "right";
+				vertSizing = "bottom";
+				position = "11 245";
+				extent = "190 30";
+				minExtent = "26 27";
+				visible = "1";
+				variable = "$ProPackPrefs::retFrameHud";
+				text = "Reticle Frame Outline";
+				longTextBuffer = "0";
+				maxLength = "255";
+			};
+			new ShellToggleButton(ProPackAmmoHud) {
+				profile = "ShellRadioProfile";
+				horizSizing = "right";
+				vertSizing = "bottom";
+				position = "11 275";
+				extent = "190 30";
+				minExtent = "26 27";
+				visible = "1";
+				variable = "$ProPackPrefs::ammoHud";
+				text = "AmmoHud (Bottom left of reticle)";
+				longTextBuffer = "0";
+				maxLength = "255";
+			};
+			new ShellToggleButton(ProPackBottomPrintDlg) {
+				profile = "ShellRadioProfile";
+				horizSizing = "right";
+				vertSizing = "bottom";
+				position = "11 305";
+				extent = "190 30";
+				minExtent = "26 27";
+				visible = "1";
+				variable = "$ProPackPrefs::bottomprintdlgVar";
+				text = "Bottom Print Dlg";
+				longTextBuffer = "0";
+				maxLength = "255";
+			};
+			new ShellToggleButton(ProPackTR2EventPopup) {
+				profile = "ShellRadioProfile";
+				horizSizing = "right";
+				vertSizing = "bottom";
+				position = "11 335";
+				extent = "190 30";
+				minExtent = "26 27";
+				visible = "1";
+				variable = "$ProPackPrefs::TR2EventPopupVar";
+				text = "TR2 Event Popup";
+				longTextBuffer = "0";
+				maxLength = "255";
+			};
+			new ShellToggleButton(ProPackTR2BonusHud) {
+				profile = "ShellRadioProfile";
+				horizSizing = "right";
+				vertSizing = "bottom";
+				position = "11 365";
+				extent = "190 30";
+				minExtent = "26 27";
+				visible = "1";
+				variable = "$ProPackPrefs::TR2BonusHudVar";
+				text = "TR2 Bonus Hud";
+				longTextBuffer = "0";
+				maxLength = "255";
+			};
+		};
+		new ShellTabFrame(ProPackAutoChatFrame) {
+			profile = "ShellTabFrameProfile";
+			horizSizing = "right";
+			vertSizing = "bottom";
+			position = "199 33";
+			extent = "419 424";
+			minExtent = "254 26";
+			visible = "0";
+			isVertical = "1";
+			useCloseButton = "0";
+			edgeInset = "0";
+
+			new GuiMLTextCtrl(ProPackAutoChatNotes) {
+				profile = "GuiDefaultProfile";
+				horizSizing = "width";
+				vertSizing = "bottom";
+				position = "11 11";
+				extent = "397 100";
+				minExtent = "8 8";
+				visible = "1";
+				lineSpacing = "2";
+				allowColorChars = "1";
+				maxChars = "-1";
+			};
+			new ShellToggleButton(ProPackWaveToObserver) {
+				profile = "ShellRadioProfile";
+				horizSizing = "right";
+				vertSizing = "bottom";
+				position = "11 95";
+				extent = "190 30";
+				minExtent = "26 27";
+				visible = "1";
+				variable = "$ProPackPrefs::WaveToObserver";
+				text = "Greet Observers (Local)";
+				longTextBuffer = "0";
+				maxLength = "255";
+			};
+			new ShellToggleButton(ProPackAutoTaunt) {
+				profile = "ShellRadioProfile";
+				horizSizing = "right";
+				vertSizing = "bottom";
+				position = "11 125";
+				extent = "190 30";
+				minExtent = "26 27";
+				visible = "1";
+				variable = "$ProPackPrefs::AutoTaunt";
+				text = "AutoTaunt (Local)";
+				longTextBuffer = "0";
+				maxLength = "255";
+			};
+			new ShellToggleButton(ProPackMuteSpammers) {
+				profile = "ShellRadioProfile";
+				horizSizing = "right";
+				vertSizing = "bottom";
+				position = "222 125";
+				extent = "190 30";
+				minExtent = "26 27";
+				visible = "1";
+				variable = "$ProPackPrefs::MuteSpammers";
+				text = "Mute Repeated Messages";
+				longTextBuffer = "0";
+				maxLength = "255";
+			};		
+			new ShellToggleButton(ProPackAutoGotFlag) {
+				profile = "ShellRadioProfile";
+				horizSizing = "right";
+				vertSizing = "bottom";
+				position = "11 155";
+				extent = "190 30";
+				minExtent = "26 27";
+				visible = "1";
+				variable = "$ProPackPrefs::AutoGotFlag";
+				text = "Auto Got Flag (HELP!)";
+				longTextBuffer = "0";
+				maxLength = "255";
+			};
+			new ShellToggleButton(ProPackAutoGenBoom) {
+				profile = "ShellRadioProfile";
+				horizSizing = "right";
+				vertSizing = "bottom";
+				position = "11 185";
+				extent = "190 30";
+				minExtent = "26 27";
+				visible = "1";
+				variable = "$ProPackPrefs::AutoGenBoom";
+				text = "Auto Gen Boom";
+				longTextBuffer = "0";
+				maxLength = "255";
+			};
+			new ShellToggleButton(ProPackAutoVPadBoom) {
+				profile = "ShellRadioProfile";
+				horizSizing = "right";
+				vertSizing = "bottom";
+				position = "222 185";
+				extent = "190 30";
+				minExtent = "26 27";
+				visible = "1";
+				variable = "$ProPackPrefs::AutoVPadBoom";
+				text = "Auto V-Pad Boom";
+				longTextBuffer = "0";
+				maxLength = "255";
+			};
+			new ShellToggleButton(ProPackAutoGrabSpeed) {
+				profile = "ShellRadioProfile";
+				horizSizing = "right";
+				vertSizing = "bottom";
+				position = "10 215";
+				extent = "191 30";
+				minExtent = "26 27";
+				visible = "1";
+				variable = "$ProPackPrefs::AutoGrabSpeed";
+				text = "Team: (Flag) Grab Speed";
+				longTextBuffer = "0";
+				maxLength = "255";
+			};
+			new GuiMLTextCtrl(ProPackGrabInfo) {
+				profile = "GuiDefaultProfile";
+				horizSizing = "right";
+				vertSizing = "bottom";
+				position = "20 255";
+				extent = "110 100";
+				minExtent = "8 8";
+				visible = "1";
+				lineSpacing = "2";
+				allowColorChars = "1";
+				maxChars = "-1";
+			};
+			new ShellTextEditCtrl(ProPackGrab1) {
+				profile = "NewTextEditProfile";
+				horizSizing = "right";
+				vertSizing = "bottom";
+				position = "125 245";
+				extent = "295 38";
+				minExtent = "32 38";
+				visible = "1";
+				maxLength = "35";
+				deniedSound = "InputDeniedSound";
+				glowOffset = "9 9";
+			};
+			new ShellTextEditCtrl(ProPackGrab2) {
+				profile = "NewTextEditProfile";
+				horizSizing = "right";
+				vertSizing = "bottom";
+				position = "125 273";
+				extent = "295 38";
+				minExtent = "32 38";
+				visible = "1";
+				maxLength = "35";
+				deniedSound = "InputDeniedSound";
+				glowOffset = "9 9";
+			};
+			new ShellTextEditCtrl(ProPackGrab3) {
+				profile = "NewTextEditProfile";
+				horizSizing = "right";
+				vertSizing = "bottom";
+				position = "125 301";
+				extent = "295 38";
+				minExtent = "32 38";
+				visible = "1";
+				maxLength = "35";
+				deniedSound = "InputDeniedSound";
+				glowOffset = "9 9";
+			};
+			new ShellTextEditCtrl(ProPackGrab4) {
+				profile = "NewTextEditProfile";
+				horizSizing = "right";
+				vertSizing = "bottom";
+				position = "125 329";
+				extent = "295 38";
+				minExtent = "32 38";
+				visible = "1";
+				maxLength = "35";
+				deniedSound = "InputDeniedSound";
+				glowOffset = "9 9";
+			};
+			new ShellTextEditCtrl(ProPackGrab5) {
+				profile = "NewTextEditProfile";
+				horizSizing = "right";
+				vertSizing = "bottom";
+				position = "125 357";
+				extent = "295 38";
+				minExtent = "32 38";
+				visible = "1";
+				maxLength = "35";
+				deniedSound = "InputDeniedSound";
+				glowOffset = "9 9";
+			};
+			new ShellToggleButton(ProPackAddPeekActive) {
+				profile = "ShellRadioProfile";
+				horizSizing = "right";
+				vertSizing = "bottom";
+				position = "222 215";
+				extent = "191 30";
+				minExtent = "26 27";
+				visible = "1";
+				variable = "$ProPackPrefs::AddPeek";
+				text = "Peek Speed";
+				longTextBuffer = "0";
+				maxLength = "255";
+			};
+		};
+		new ShellTabFrame(ProPackTrackerFrame) {
+			profile = "ShellTabFrameProfile";
+			horizSizing = "right";
+			vertSizing = "bottom";
+			position = "199 33";
+			extent = "419 424";
+			minExtent = "254 26";
+			visible = "0";
+			isVertical = "1";
+			useCloseButton = "0";
+			edgeInset = "0";
+
+			new GuiMLTextCtrl(ProPackTrackerNotes) {
+				profile = "GuiDefaultProfile";
+				horizSizing = "width";
+				vertSizing = "bottom";
+				position = "11 11";
+				extent = "397 100";
+				minExtent = "8 8";
+				visible = "1";
+				lineSpacing = "2";
+				allowColorChars = "1";
+				maxChars = "-1";
+			};
+			new ShellToggleButton(ProPackTrackerActivate) {
+				profile = "ShellRadioProfile";
+				horizSizing = "right";
+				vertSizing = "bottom";
+				position = "11 125";
+				extent = "190 30";
+				minExtent = "26 27";
+				visible = "1";
+				variable = "$ProPackPrefs::TrackerActive";
+				text = "Track Stats";
+				longTextBuffer = "0";
+				maxLength = "255";
+			};
+			new ShellToggleButton(ProPackKillPopup) {
+				profile = "ShellRadioProfile";
+				horizSizing = "right";
+				vertSizing = "bottom";
+				position = "26 155";
+				extent = "175 30";
+				minExtent = "26 27";
+				visible = "1";
+				variable = "$ProPackPrefs::TrackerPopup";
+				text = "Kill Popup";
+				longTextBuffer = "0";
+				maxLength = "255";
+			};
+			new ShellToggleButton(ProPackHeadShotSounds) {
+				profile = "ShellRadioProfile";
+				horizSizing = "right";
+				vertSizing = "bottom";
+				position = "26 185";
+				extent = "175 30";
+				minExtent = "26 27";
+				visible = "1";
+				variable = "$ProPackPrefs::TrackerHeadShotSound";
+				text = "Head Shot Sounds";
+				longTextBuffer = "0";
+				maxLength = "255";
+			};
+		};
+		new ShellTabFrame(ProPackInfoHudFrame) {
+			profile = "ShellTabFrameProfile";
+			horizSizing = "right";
+			vertSizing = "bottom";
+			position = "199 33";
+			extent = "419 424";
+			minExtent = "254 26";
+			visible = "0";
+			isVertical = "1";
+			useCloseButton = "0";
+			edgeInset = "0";
+
+			new GuiMLTextCtrl(ProPackInfoHudNotes) {
+				profile = "GuiDefaultProfile";
+				horizSizing = "width";
+				vertSizing = "bottom";
+				position = "11 11";
+				extent = "397 100";
+				minExtent = "8 8";
+				visible = "1";
+				lineSpacing = "2";
+				allowColorChars = "1";
+				maxChars = "-1";
+			};
+			new ShellToggleButton(ProPackInfoHudActivate) {
+				profile = "ShellRadioProfile";
+				horizSizing = "right";
+				vertSizing = "bottom";
+				position = "11 125";
+				extent = "190 30";
+				minExtent = "26 27";
+				visible = "1";
+				variable = "$ProPackprefs::InfoHudActivate";
+				text = "Info Hud Activated";
+				longTextBuffer = "0";
+				maxLength = "255";
+			};
+			new ShellToggleButton(ProPackSplitDeathMsg) {
+				profile = "ShellRadioProfile";
+				horizSizing = "right";
+				vertSizing = "bottom";
+				position = "26 155";
+				extent = "175 30";
+				minExtent = "26 27";
+				visible = "1";
+				variable = "$ProPackPrefs::DeathMessages";
+				text = "Split Death Messages";
+				longTextBuffer = "0";
+				maxLength = "255";
+			};
+			new ShellToggleButton(ProPackMuteChatDisplay) {
+				profile = "ShellRadioProfile";
+				horizSizing = "right";
+				vertSizing = "bottom";
+				position = "222 125";
+				extent = "190 30";
+				minExtent = "26 27";
+				visible = "1";
+				variable = "$ProPackPrefs::MuteChatDisplay";
+				text = "Mute Chat [V**] Display";
+				longTextBuffer = "0";
+				maxLength = "255";
+			};
+			new ShellToggleButton(ProPackColorKills) {
+				profile = "ShellRadioProfile";
+				horizSizing = "right";
+				vertSizing = "bottom";
+				position = "222 155";
+				extent = "190 30";
+				minExtent = "26 27";
+				visible = "1";
+				variable = "$ProPackPrefs::CKillsActive";
+				text = "Color Kills";
+				longTextBuffer = "0";
+				maxLength = "255";
+			};
+		};
+		new ShellTabFrame(ProPackOBHudFrame) {
+			profile = "ShellTabFrameProfile";
+			horizSizing = "right";
+			vertSizing = "bottom";
+			position = "199 33";
+			extent = "419 424";
+			minExtent = "254 26";
+			visible = "0";
+			isVertical = "1";
+			useCloseButton = "0";
+			edgeInset = "0";
+
+			new GuiMLTextCtrl(ProPackOBHudNotes) {
+				profile = "GuiDefaultProfile";
+				horizSizing = "width";
+				vertSizing = "bottom";
+				position = "11 11";
+				extent = "397 100";
+				minExtent = "8 8";
+				visible = "1";
+				lineSpacing = "2";
+				allowColorChars = "1";
+				maxChars = "-1";
+			};
+			new ShellToggleButton(ProPackOBHudActivate) {
+				profile = "ShellRadioProfile";
+				horizSizing = "right";
+				vertSizing = "bottom";
+				position = "11 125";
+				extent = "190 30";
+				minExtent = "26 27";
+				visible = "1";
+				variable = "$ProPackPrefs::OBHudActive";
+				text = "New Objective Hud Activated";
+				longTextBuffer = "0";
+				maxLength = "255";
+			};
+			new ShellToggleButton(ProPackScoreHudActivate) {
+				profile = "ShellRadioProfile";
+				horizSizing = "right";
+				vertSizing = "bottom";
+				position = "26 155";
+				extent = "175 30";
+				minExtent = "26 27";
+				visible = "1";
+				variable = "$ProPackPrefs::ScoreHudActive";
+				text = "Score Hud Activated";
+				longTextBuffer = "0";
+				maxLength = "255";
+			};
+			new ShellToggleButton(ProPackStatusHudActivate) {
+				profile = "ShellRadioProfile";
+				horizSizing = "right";
+				vertSizing = "bottom";
+				position = "26 185";
+				extent = "175 30";
+				minExtent = "26 27";
+				visible = "1";
+				variable = "$ProPackPrefs::StatusHudActive";
+				text = "Status Hud Activated";
+				longTextBuffer = "0";
+				maxLength = "255";
+			};
+			new ShellToggleButton(ProPackFlagHudActivate) {
+				profile = "ShellRadioProfile";
+				horizSizing = "right";
+				vertSizing = "bottom";
+				position = "222 125";
+				extent = "190 30";
+				minExtent = "26 27";
+				visible = "1";
+				variable = "$ProPackPrefs::FlagHudActive";
+				text = "New Flag Status Hud Activated";
+				longTextBuffer = "0";
+				maxLength = "255";
+			};
+		};
+		new ShellTabFrame(ProPackMultiFrame) {
+			profile = "ShellTabFrameProfile";
+			horizSizing = "right";
+			vertSizing = "bottom";
+			position = "199 33";
+			extent = "419 424";
+			minExtent = "254 26";
+			visible = "0";
+			isVertical = "1";
+			useCloseButton = "0";
+			edgeInset = "0";
+
+			new GuiMLTextCtrl(ProPackMultiNotes) {
+				profile = "GuiDefaultProfile";
+				horizSizing = "width";
+				vertSizing = "bottom";
+				position = "11 11";
+				extent = "397 100";
+				minExtent = "8 8";
+				visible = "1";
+				lineSpacing = "2";
+				allowColorChars = "1";
+				maxChars = "-1";
+			};
+			new ShellToggleButton(ProPackFPSHudActive) {
+				profile = "ShellRadioProfile";
+				horizSizing = "right";
+				vertSizing = "bottom";
+				position = "11 125";
+				extent = "190 30";
+				minExtent = "26 27";
+				visible = "1";
+				variable = "$ProPackPrefs::FPSHud";
+				text = "FPS Hud";
+				longTextBuffer = "0";
+				maxLength = "255";
+			};
+			new ShellToggleButton(ProPackPingHudActive) {
+				profile = "ShellRadioProfile";
+				horizSizing = "right";
+				vertSizing = "bottom";
+				position = "11 155";
+				extent = "190 30";
+				minExtent = "26 27";
+				visible = "1";
+				variable = "$ProPackPrefs::PingHud";
+				text = "Ping Hud";
+				longTextBuffer = "0";
+				maxLength = "255";
+			};
+			new ShellToggleButton(ProPackSpeedHudActive) {
+				profile = "ShellRadioProfile";
+				horizSizing = "right";
+				vertSizing = "bottom";
+				position = "11 185";
+				extent = "190 30";
+				minExtent = "26 27";
+				visible = "1";
+				variable = "$ProPackPrefs::SpeedHud";
+				text = "Speed Hud";
+				longTextBuffer = "0";
+				maxLength = "255";
+			};
+			new ShellToggleButton(ProPackAltHudActive) {
+				profile = "ShellRadioProfile";
+				horizSizing = "right";
+				vertSizing = "bottom";
+				position = "11 215";
+				extent = "190 30";
+				minExtent = "26 27";
+				visible = "1";
+				variable = "$ProPackPrefs::AltHud";
+				text = "Altitude Hud";
+				longTextBuffer = "0";
+				maxLength = "255";
+			};
+			new ShellToggleButton(ProPackPeekSpdActive) {
+				profile = "ShellRadioProfile";
+				horizSizing = "right";
+				vertSizing = "bottom";
+				position = "11 245";
+				extent = "190 30";
+				minExtent = "26 27";
+				visible = "1";
+				variable = "$ProPackPrefs::PeekSpeedHud";
+				text = "Speed Peek Hud";
+				longTextBuffer = "0";
+				maxLength = "255";
+			};
+		};
+		new ShellTabFrame(ProPackMuteFrame) {
+			profile = "ShellTabFrameProfile";
+			horizSizing = "right";
+			vertSizing = "bottom";
+			position = "199 33";
+			extent = "419 424";
+			minExtent = "254 26";
+			visible = "0";
+			isVertical = "1";
+			useCloseButton = "0";
+			edgeInset = "0";
+
+			new GuiMLTextCtrl(ProPackMuteNotes) {
+				profile = "GuiDefaultProfile";
+				horizSizing = "width";
+				vertSizing = "bottom";
+				position = "11 11";
+				extent = "397 100";
+				minExtent = "8 8";
+				visible = "1";
+				lineSpacing = "2";
+				allowColorChars = "1";
+				maxChars = "-1";
+			};
+			new ShellToggleButton(ProPackMuteToolsActivate) {
+				profile = "ShellRadioProfile";
+				horizSizing = "right";
+				vertSizing = "bottom";
+				position = "21 103";
+				extent = "388 30";
+				minExtent = "26 27";
+				visible = "1";
+				variable = "$ProPackPrefs::MuteToolsActive";
+				text = "Alter/Split Tools Active";
+				longTextBuffer = "0";
+				maxLength = "255";
+			};
+			new ShellScrollCtrl(ProPackMuteListParent) {
+				profile = "NewScrollCtrlProfile";
+				horizSizing = "width";
+				vertSizing = "height";
+				position = "11 131";
+				extent = "408 289";
+				minExtent = "24 52";
+				visible = "1";
+				helpTag = "0";
+				willFirstRespond = "1";
+				hScrollBar = "alwaysOff";
+				vScrollBar = "alwaysOn";
+				constantThumbHeight = "0";
+				defaultLineHeight = "15";
+				childMargin = "0 0";
+				fieldBase = "gui/shll_field";
+
+				new GuiScrollContentCtrl(ProPackMuteToolsList) {
+					profile = "GuiDefaultProfile";
+					horizSizing = "right";
+					vertSizing = "bottom";
+					position = "4 4";
+					extent = "384 297";
+					minExtent = "8 8";
+					visible = "1";
+					helpTag = "0";
+
+					new GuiChatMenuTreeCtrl(ProPackMuteToolsTree) {
+						profile = "ShellTreeViewProfile";
+						horizSizing = "right";
+						vertSizing = "bottom";
+						position = "0 0";
+						extent = "409 280";
+						minExtent = "8 8";
+						visible = "1";
+						altCommand = "ProPackGui.editSelectedMuteListItem();";
+						helpTag = "0";
+						tabSize = "16";
+						imagesBitmap = "gui/shll_treeView.png";
+						numImages = "13";
+						textOffset = "2";
+						fullRowSelect = "0";
+						itemHeight = "15";
+						altFontColor = "6 215 245 255";
+						altFontColorHL = "6 215 245 255";
+						altFontColorSE = "25 56 68 255";
+							dirty = "0";
+					};
+				};
+			};
+		};
+	};
+};
+//--- OBJECT WRITE END ---
+
+//--- OBJECT WRITE BEGIN --- Mute options Popup
+new GuiControl(ProPackEditMuteItem) {
+	profile = "DlgBackProfile";
+	horizSizing = "width";
+	vertSizing = "height";
+	position = "0 0";
+	extent = "640 480";
+	minExtent = "8 8";
+	visible = "1";
+	helpTag = "0";
+
+	new ShellPaneCtrl(ProPackEditTitle) {
+		profile = "ShellDlgPaneProfile";
+		horizSizing = "center";
+		vertSizing = "center";
+		position = "150 110";
+		extent = "400 300";
+		minExtent = "48 92";
+		visible = "1";
+		helpTag = "0";
+		text = "Edit::";
+		noTitleBar = "0";
+
+		new GuiTextCtrl() {
+			profile = "ShellTextRightProfile";
+			horizSizing = "right";
+			vertSizing = "bottom";
+			position = "21 42";
+			extent = "80 22";
+			minExtent = "8 8";
+			visible = "1";
+			helpTag = "0";
+			text = "Action:";
+		};
+		new ShellPopupMenu(ProPackEditMuteActions) {
+			profile = "ShellPopupProfile";
+			horizSizing = "right";
+			vertSizing = "bottom";
+			position = "97 34";
+			extent = "249 36";
+			minExtent = "49 36";
+			visible = "1";
+			helpTag = "0";
+			maxPopupHeight = "200";
+			buttonBitmap = "gui/shll_pulldown";
+			rolloverBarBitmap = "gui/shll_pulldownbar_rol";
+			selectedBarBitmap = "gui/shll_pulldownbar_act";
+			noButtonStyle = "0";
+		};
+		new GuiTextCtrl() {
+			profile = "ShellTextRightProfile";
+			horizSizing = "right";
+			vertSizing = "bottom";
+			position = "21 80";
+			extent = "80 22";
+			minExtent = "8 8";
+			visible = "1";
+			helpTag = "0";
+			text = "Alter Text:";
+		};
+		new ShellTextEditCtrl() {
+			profile = "NewTextEditProfile";
+			horizSizing = "right";
+			vertSizing = "bottom";
+			position = "97 72";
+			extent = "249 38";
+			minExtent = "32 38";
+			visible = "1";
+			variable = "$ProPackGui::AlterText";
+			helpTag = "0";
+			historySize = "0";
+			maxLength = "100";
+			password = "0";
+			glowOffset = "9 9";
+		};
+		new GuiMLTextCtrl(ProPackEditNotes) {
+			profile = "ProPackTextCTRL";
+			horizSizing = "right";
+			vertSizing = "bottom";
+			position = "19 113";
+			extent = "368 100";
+			minExtent = "8 8";
+			visible = "1";
+			lineSpacing = "2";
+			allowColorChars = "1";
+			maxChars = "-1";
+		};
+		// cancel - commit offset
+		//- 270 - 130
+		//- 50 [135] (30) [135] 50
+		new ShellBitmapButton() {
+			profile = "ShellButtonProfile";
+			horizSizing = "right";
+			vertSizing = "bottom";
+			position = "215 245";
+			extent = "135 38";
+			minExtent = "32 38";
+			visible = "1";
+			command = "ProPackGui.setMuteItem();";
+			helpTag = "0";
+			text = "Commit Changes";
+			simpleStyle = "0";
+		};
+		new ShellBitmapButton() {
+			profile = "ShellButtonProfile";
+			horizSizing = "right";
+			vertSizing = "bottom";
+			position = "50 245";
+			extent = "135 38";
+			minExtent = "32 38";
+			visible = "1";
+			command = "ProPackEditMuteActions.clear();Canvas.popDialog(ProPackEditMuteItem);";
+			accelerator = "escape";
+			helpTag = "0";
+			text = "Cancel";
+			simpleStyle = "0";
+		};
+	};
+};
+//--- OBJECT WRITE END ---
